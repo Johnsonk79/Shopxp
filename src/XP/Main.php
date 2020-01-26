@@ -78,10 +78,10 @@ class Main extends PluginBase implements Listener {
 				}
 			});
 			$xp = $player->getXpLevel();
-			$form->setTitle("§7Shop§aXp");
-			$form->setContent("You have $xp Xp!");
-			$form->addButton("§aParticle", 1, "Default:textures/items/Paper");
-			$form->addButton("§ccancel", 2, "Default:textures/items/Oak_Door");
+			$form->setTitle("§eXp§aSHOP");
+			$form->setContent("You have $xp XP Levels");
+			$form->addButton("§Buy", 1, "Default:textures/items/Paper");
+			$form->addButton("§cCancel", 2, "Default:textures/items/Oak_Door");
 			$form->sendToPlayer($player);
 	}
 	
@@ -95,56 +95,57 @@ class Main extends PluginBase implements Listener {
 				switch($result){
 					case "0";
 					$xp = $player->getXpLevel();
-					if($xp > 20){
-						$dragon = Item::get(339,4,1);
+					if($xp > 50){
+						$dragon = Item::get(402,7,1);
 						$e = Enchantment::getEnchantment(1);
 						$name = $player->getName();
 				
-						$dragon->setCustomName("§dHeartParticle\n§fKeep it invemtory in to enable\n§eOwner§a $name");	
+						$dragon->setCustomName("§aEmerald Particle\n§fKeep in inventory to enable\n§eOwner:§a $name"");	
 						$dragon->addEnchantment(new EnchantmentInstance($e, 3, 1));
 				
 						$player->getInventory()->addItem($dragon);
 						$player->subtractXpLevels(20);
-						$player->sendMessage("§aYou have already purchased HeartParticle");
+						$player->sendMessage("§a You have purchased §2Emerald Particle");
 						return true;
 					}else{
-						$player->sendMessage("§6 You dont have xp.");
+						$player->sendMessage("§cYou dont have enough xp level");
 						return true;
 					}
 					case "1";
 					$xp = $player->getXpLevel();
-					if($xp > 20){
-						$dragon = Item::get(339,7,1);
+					if($xp > 75){
+						$dragon = Item::get(402,4,1);
 						$e = Enchantment::getEnchantment(1);
 						$name = $player->getName();
 				
-						$dragon->setCustomName("§a HappyVillagerParticle §\n§fKeep it invemtory in to enable\n§eOwner§a $name");	
+						$dragon->setCustomName("§cHeart Particle\n§fKeep in inventory to enable\n§eOwner:§a $name");	
 						$dragon->addEnchantment(new EnchantmentInstance($e, 3, 1));
 				
 						$player->getInventory()->addItem($dragon);
 						$player->subtractXpLevels(20);
-						$player->sendMessage("§a You have already purchased §aHappyVillagerParticle");
+						$player->sendMessage("§aYou have purchased §cHeart Particle!");
 						return true;
 					}else{
-						$player->sendMessage("§6 You dont have xp.");
+						$player->sendMessage("§cYou dont have enough xp level");
 						return true;
 					}
+					
 					case "2";
 					$xp = $player->getXpLevel();
-					if($xp > 20){
-						$dragon = Item::get(339,5,1);
+					if($xp > 100){
+						$dragon = Item::get(402,5,1);
 						$e = Enchantment::getEnchantment(1);
 						$name = $player->getName();
 				
-						$dragon->setCustomName("§6 LavaParticle §\n§fKeep it invemtory in to enable\n§eOwner§a $name");	
+						$dragon->setCustomName("§6Lava Particle\n§fKeep in inventory to enable\n§eOwner:§a $name");	
 						$dragon->addEnchantment(new EnchantmentInstance($e, 3, 1));
 				
 						$player->getInventory()->addItem($dragon);
 						$player->subtractXpLevels(20);
-						$player->sendMessage("§a You have already purchased ExplodeParticle ");
+						$player->sendMessage("§aYou have purchased §4Lava Particle!!!");
 						return true;
 					}else{
-						$player->sendMessage("§6 You dont have xp.");
+						$player->sendMessage("§cYou dont have enough xp level");
 						return true;
 					}
 					break;
@@ -154,10 +155,10 @@ class Main extends PluginBase implements Listener {
 				}
 			});
 			$form->setTitle("§7Partical");
-			$form->addButton("§cHeartParticle 20Xp!\n• §aBuy §e20 §aXp", 1, "Default:textures/items/Paper");
-			$form->addButton("§aHappyVillagerParticle 20Xp!\n• §aBuy §e20 §aXp", 1, "Default:textures/items/Paper");
-			$form->addButton("§6LavaParticle 20Xp!\n• §aBuy §e20 §aXp", 1, "Default:textures/items/Paper");
-			$form->addButton("§aBack to ShopXp.");
+			$form->addButton("§aEmerald Particle Trail\n§750 §aXp Levels", 1, "Default:textures/items/Paper");
+			$form->addButton("§cHeart Particle Trail\n§775 §aXp Levels", 1, "Default:textures/items/Paper");
+			$form->addButton("§6Lava Particle Trail\n§7100 §aXp Levels", 1, "Default:textures/items/Paper");
+			$form->addButton("§aBack");
 			$form->sendToPlayer($player);
 	}
 	
@@ -177,27 +178,27 @@ class Main extends PluginBase implements Listener {
 		$sp = new SplashParticle(new Vector3($player->x, $player->y+0.5, $player->z), 5);
 		$lh = new HappyVillagerParticle(new Vector3($player->x, $player->y+1, $player->z), 5);
 		//50
-		if($player->getInventory()->contains(Item::get(339, 1, 1))){
+		if($player->getInventory()->contains(Item::get(402, 1, 1))){
 			$player->getLevel()->addParticle($flame);
 		}
 		//50
-		if($player->getInventory()->contains(Item::get(339, 2, 1))){
+		if($player->getInventory()->contains(Item::get(402, 2, 1))){
 			$player->getLevel()->addParticle($cri);
 		}
 		//20
-		if($player->getInventory()->contains(Item::get(339, 3, 1))){
+		if($player->getInventory()->contains(Item::get(402, 3, 1))){
 			$player->getLevel()->addParticle($ex);
 		}
-		if($player->getInventory()->contains(Item::get(339, 4, 1))){
+		if($player->getInventory()->contains(Item::get(402, 4, 1))){
 			$player->getLevel()->addParticle($hear);
 		}
-		if($player->getInventory()->contains(Item::get(339, 5, 1))){
+		if($player->getInventory()->contains(Item::get(402, 5, 1))){
 			$player->getLevel()->addParticle($lava);
 		}
-		if($player->getInventory()->contains(Item::get(339, 6, 1))){
+		if($player->getInventory()->contains(Item::get(402, 6, 1))){
 			$player->getLevel()->addParticle($sp);
 		}
-		if($player->getInventory()->contains(Item::get(339, 7, 1))){
+		if($player->getInventory()->contains(Item::get(402, 7, 1))){
 			$player->getLevel()->addParticle($lh);
 		}
 	}
